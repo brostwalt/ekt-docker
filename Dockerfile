@@ -3,9 +3,9 @@ FROM rancher.med.osd.ds:5000/dotnetcore-sdk-3.1:latest
 USER root
 
 WORKDIR /src
-COPY ["DHA.Ektropy.Web/DHA.Ektropy.Web.csproj", "DHA.Ektropy.Web/"]
+COPY ["/src/DHA.Ektropy.Web/DHA.Ektropy.Web.csproj", "DHA.Ektropy.Web/"]
 RUN dotnet restore "DHA.Ektropy.Web/DHA.Ektropy.Web.csproj"
-COPY . .
+COPY ./src .
 WORKDIR "/src/DHA.Ektropy.Web"
 RUN dotnet build "DHA.Ektropy.Web.csproj" -c Release -o /app
 
