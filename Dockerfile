@@ -22,7 +22,7 @@ RUN chown root /src -R
 RUN chown dotnet.dotnet /app -R
 
 USER dotnet
-ENV ASPNETCORE_URLS='http://*:80'
+ENV ASPNETCORE_URLS='http://*:8080'
 
 ENV CONTAINER_SCRIPTS_PATH=/app
 ENV DOTNET_DEFAULT_CMD=default-cmd.sh
