@@ -1,4 +1,4 @@
-FROM rancher.med.osd.ds:5000/dotnetcore-sdk-3.1:latest
+FROM rancher.med.osd.ds:5000/dotnetcore-sdk-3.1:latest-test
 
 USER root
 
