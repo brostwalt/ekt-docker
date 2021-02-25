@@ -11,13 +11,7 @@ RUN dotnet build "DHA.Ektropy.Web.csproj" -c Release -o /opt/app-root/
 
 RUN dotnet publish "DHA.Ektropy.Web.csproj" -c Release -o /opt/app-root/
 
-WORKDIR /opt/app-root/
-
-ENTRYPOINT ["dotnet", "DHA.Ektropy.Web.dll"]
-
-
 RUN chown root /src -R
-
 
 RUN chown dotnet.dotnet /opt/app-root/ -R
 
