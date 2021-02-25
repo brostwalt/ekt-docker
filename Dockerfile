@@ -15,6 +15,10 @@ RUN chown root /src -R
 
 RUN chown dotnet.dotnet /opt/app-root/ -R
 
+COPY file/nuget-cleanup.sh /opt/
+RUN sh /opt/nuget-cleanup.sh
+
+
 USER dotnet
 ENV ASPNETCORE_URLS='http://*:8080'
 
