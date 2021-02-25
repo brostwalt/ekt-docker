@@ -2,22 +2,16 @@ FROM rancher.med.osd.ds:5000/dotnetcore-sdk-3.1:latest-test
 
 USER root
 
+COPY file/nuget-cleanup.sh /opt/
+
 WORKDIR /src
 COPY ["/src/DHA.Ektropy.Web/DHA.Ektropy.Web.csproj", "DHA.Ektropy.Web/"]
 RUN dotnet restore "DHA.Ektropy.Web/DHA.Ektropy.Web.csproj"
 COPY ./src .
 WORKDIR "/src/DHA.Ektropy.Web"
-RUN dotnet build "DHA.Ektropy.Web.csproj" -c Release -o /opt/app-root/
+RUN dotnet build "DHA.Ektropy.Web.csproj" -c Release -o /opt/app-root/ && dotnet publish "DHA.Ektropy.Web.csproj" -c Release -o /opt/app-root/ && sh /opt/nuget-cleanup.sh
 
-RUN dotnet publish "DHA.Ektropy.Web.csproj" -c Release -o /opt/app-root/
-
-RUN chown root /src -R
-
-RUN chown dotnet.dotnet /opt/app-root/ -R
-
-COPY file/nuget-cleanup.sh /opt/
-RUN sh /opt/nuget-cleanup.sh
-
+RUN chown root /src -R && chown dotnet.dotnet /opt/app-root/ -R 
 
 USER dotnet
 ENV ASPNETCORE_URLS='http://*:8080'
