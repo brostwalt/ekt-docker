@@ -1,4 +1,4 @@
-FROM rancher.med.osd.ds:5000/dotnetcore-sdk-3.1:latest
+FROM rancher.med.osd.ds:5000/dotnet:redhat
 
 USER root
 
@@ -11,9 +11,9 @@ COPY ./src .
 WORKDIR "/src/DHA.Ektropy.Web"
 RUN dotnet build "DHA.Ektropy.Web.csproj" -c Release -o /opt/app-root/ && dotnet publish "DHA.Ektropy.Web.csproj" -c Release -o /opt/app-root/ && sh /opt/nuget-cleanup.sh
 
-RUN chown root /src -R && chown dotnet.dotnet /opt/app-root/ -R 
+RUN chown root /src -R && chown 1001.1001 /opt/app-root/ -R 
 
-USER dotnet
+USER 1001
 ENV ASPNETCORE_URLS='http://*:8080'
 
 ENV CONTAINER_SCRIPTS_PATH=/opt/app-root/
