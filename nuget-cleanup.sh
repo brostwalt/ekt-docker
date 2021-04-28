@@ -3,7 +3,8 @@ if [ "$DOTNET_INCREMENTAL" == "true" ]; then
   mkdir /opt/app-root/packages-for-incremental-build
   find /root/.nuget/packages -type f -maxdepth 3 -name '*.nupkg' -exec mv -t /opt/app-root/packages-for-incremental-build {} \+
 fi
-rm -rf /root/{.nuget,.local}
+rm -rf /root/.nuget/packages
+rm -rf /root/.local
 
 if [ "$DOTNET_RM_SRC" == "true" ]; then
   echo "---> Removing sources..."
