@@ -7,5 +7,5 @@ USER 1001
 
 ENV DOTNET_STARTUP_PROJECT=DHA.Ektropy.Web/DHA.Ektropy.Web.csproj
 
-RUN  /dotnet-install.sh -i /opt/app-root/.dotnet/ &&  /dotnet-install.sh -i /usr/lib64/docker/ && /usr/libexec/s2i/assemble 
+RUN  /dotnet-install.sh -i /opt/app-root/.dotnet/ &&  /dotnet-install.sh -i /usr/lib64/dotnet/ && /usr/libexec/s2i/assemble 
 CMD /usr/libexec/s2i/run
