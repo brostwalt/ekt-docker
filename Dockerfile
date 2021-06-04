@@ -4,9 +4,7 @@ USER root
 
 COPY file/nuget-cleanup.sh /opt/
 
-WORKDIR /src
-COPY ["/src/DHA.Ektropy.Web/DHA.Ektropy.Web.csproj", "DHA.Ektropy.Web/"]
-RUN dotnet restore "DHA.Ektropy.Web/DHA.Ektropy.Web.csproj" && sh /opt/nuget-cleanup.sh
+
 COPY ./src .
 WORKDIR "/src/DHA.Ektropy.Web"
 RUN dotnet build "DHA.Ektropy.Web.csproj" -c Release -o /opt/app-root/ && dotnet publish "DHA.Ektropy.Web.csproj" -c Release -o /opt/app-root/ && sh /opt/nuget-cleanup.sh
